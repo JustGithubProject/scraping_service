@@ -1,10 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Scraping Project</title>
-</head>
-<body>
-    <h1 align="center">Today: {{date}}</h1>
-</body>
-</html>
+{% extends 'base.html'%}
+
+{%block title%}Home page{%endblock%}
+{% block content%}
+{% for i in obj%}
+<div class="card my-3">
+    <h5 class="card-header"><a href="{{i.url}}">{{i.title}}</a></h5>
+    <div class="card-body">
+        <p class="card-text">{{i.description}}</p>
+        <p>{{i.city.name}} | {{i.language.name}} | <small>{{i.timestamp|date:"SHORT_DATE_FORMAT"}}</small></p>
+    </div>
+</div>
+{% endfor %}
+{%endblock%}
